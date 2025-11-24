@@ -21,5 +21,9 @@ const memes = [
   { name: "Wojak (Doomer, Soyjak, etc.)" },
 ];
 
-function getMeme() {
-    
+let container = null;
+function injectMeme(meme) {
+  memes.forEach((meme) => (container = document.querySelector(".app")));
+  container.insertAdjacentHTML();
+  ("afterbegin");
+}
