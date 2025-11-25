@@ -1,4 +1,8 @@
 const memes = [
+  {
+    name: "Meme Love Triangle",
+    img: "MemeLoveTriangle.webp",
+  },
   { name: "Distracted Boyfriend" },
   { name: "Drake Hotline Bling" },
   { name: "Woman Yelling at a Cat" },
@@ -21,9 +25,16 @@ const memes = [
   { name: "Wojak (Doomer, Soyjak, etc.)" },
 ];
 
-let container = null;
-function injectMeme(meme) {
-  memes.forEach((meme) => (container = document.querySelector(".app")));
-  container.insertAdjacentHTML();
-  ("afterbegin");
+function generateMeme(memeArray) {
+  const container = document.querySelector("#container");
+  container.innerHTML = "";
+  memeArray.forEach((memeimage) => {
+    container.insertAdjacentHTML(
+      "afterbegin",
+      `<div class="memeimage">
+      <img src="${memeimage.img}" alt="${memeimage.alt}">
+    </div>`
+    );
+  });
 }
+generateMeme(memes);
