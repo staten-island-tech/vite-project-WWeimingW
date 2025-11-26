@@ -1,24 +1,65 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import "./style.css";
+const memes = [
+  {
+    name: "Distracted Boyfriend",
+    img: "DistractedBoyfriend.webp",
+    genre: "relationship",
+  },
+  {
+    name: "Drake Hotline Bling",
+    img: "DrakeHotlineBling.webp",
+    genre: "reaction",
+  },
+  {
+    name: "Woman Yelling at a Cat",
+    img: "WomanYellingAtACat.webp",
+    genre: "argument",
+  },
+  { name: "Doge", img: "Doge.webp", genre: "wholesome" },
+  { name: "Success Kid", img: "SuccessKid.webp", genre: "achievement" },
+  { name: "Grumpy Cat", img: "GrumpyCat.webp", genre: "wholesome" },
+  { name: "Trollface", img: "Trollface.webp", genre: "meme" },
+  { name: "Skibidi Toilet", img: "SkibidiToilet.webp", genre: "absurd" },
+  { name: "Fanum Tax", img: "FanumTax.webp", genre: "tax" },
+  { name: "NPC Meme", img: "NPCMeme.webp", genre: "gaming" },
+  {
+    name: "Surprised Pikachu",
+    img: "SurprisedPikachu.webp",
+    genre: "reaction",
+  },
+  { name: "Two Buttons", img: "TwoButtons.webp", genre: "decision" },
+  {
+    name: "Expanding Brain",
+    img: "ExpandingBrain.webp",
+    genre: "intelligence",
+  },
+  {
+    name: "Is This a Pigeon?",
+    img: "IsThisAPigeon.webp",
+    genre: "misunderstanding",
+  },
+  { name: "This Is Fine", img: "ThisIsFine.webp", genre: "acceptance" },
+  { name: "Let Him Cook", img: "LetHimCook.webp", genre: "cooking" },
+  { name: "Rizz", img: "Rizz.webp", genre: "flirting" },
+  { name: "Sigma Male", img: "SigmaMale.webp", genre: "masculinity" },
+  { name: "Ohio Memes", img: "OhioMemes.webp", genre: "location" },
+  {
+    name: "Wojak (Doomer, Soyjak, etc.)",
+    img: "Wojak.webp",
+    genre: "character",
+  },
+];
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
-
-setupCounter(document.querySelector('#counter'))
+function generateMeme(memeArray) {
+  const container = document.querySelector("#container");
+  container.innerHTML = "";
+  memeArray.forEach((memeimage) => {
+    container.insertAdjacentHTML(
+      "afterbegin",
+      `<div class="memeimage">
+      <img src="${memeimage.img}" alt="${memeimage.alt}">
+    </div>`
+    );
+  });
+}
+generateMeme(memes);
