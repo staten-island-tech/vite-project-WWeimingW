@@ -1,4 +1,5 @@
 import "./style.css";
+
 const memes = [
   {
     name: "Distracted Boyfriend",
@@ -12,16 +13,16 @@ const memes = [
   },
   {
     name: "Woman Yelling at a Cat",
-    img: "WomanYellingAtACat.webp",
+    img: "WomanYellingAtACat.jpg",
     genre: "argument",
   },
-  { name: "Doge", img: "Doge.webp", genre: "wholesome" },
-  { name: "Success Kid", img: "SuccessKid.webp", genre: "achievement" },
-  { name: "Grumpy Cat", img: "GrumpyCat.webp", genre: "wholesome" },
-  { name: "Trollface", img: "Trollface.webp", genre: "meme" },
-  { name: "Skibidi Toilet", img: "SkibidiToilet.webp", genre: "absurd" },
-  { name: "Fanum Tax", img: "FanumTax.webp", genre: "tax" },
-  { name: "NPC Meme", img: "NPCMeme.webp", genre: "gaming" },
+  { name: "Doge", img: "Doge.jpg", genre: "wholesome" },
+  { name: "Success Kid", img: "SuccessKid.jpg", genre: "achievement" },
+  { name: "Grumpy Cat", img: "GrumpyCat.jpg", genre: "wholesome" },
+  { name: "Trollface", img: "Trollface.png", genre: "meme" },
+  { name: "Skibidi Toilet", img: "SkibidiToilet.jpg", genre: "absurd" },
+  { name: "Fanum Tax", img: "FanumTax.png", genre: "tax" },
+  { name: "NPC Meme", img: "NPCMeme.png", genre: "gaming" },
   {
     name: "Surprised Pikachu",
     img: "SurprisedPikachu.webp",
@@ -30,7 +31,7 @@ const memes = [
   { name: "Two Buttons", img: "TwoButtons.webp", genre: "decision" },
   {
     name: "Expanding Brain",
-    img: "ExpandingBrain.webp",
+    img: "ExpandingBrain.jpg",
     genre: "intelligence",
   },
   {
@@ -49,11 +50,9 @@ const memes = [
     genre: "character",
   },
 ];
-
-function generateMeme(memeArray) {
-  const container = document.querySelector("#container");
-  container.innerHTML = "";
-  memeArray.forEach((memeimage) => {
+function generateMeme(memes) {
+  memes.forEach((memeimage) => {
+    const container = document.querySelector(".container");
     container.insertAdjacentHTML(
       "afterbegin",
       `<div class="memeimage">
