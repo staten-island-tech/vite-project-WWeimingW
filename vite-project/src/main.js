@@ -8,7 +8,7 @@ const memes = [
   },
   {
     name: "Drake Hotline Bling",
-    img: "DrakeHotlineBling.webp",
+    img: "DrakeHotlineBling.jpg",
     genre: "reaction",
   },
   {
@@ -39,14 +39,13 @@ const memes = [
     img: "IsThisAPigeon.webp",
     genre: "misunderstanding",
   },
-  { name: "This Is Fine", img: "ThisIsFine.webp", genre: "acceptance" },
-  { name: "Let Him Cook", img: "LetHimCook.webp", genre: "cooking" },
-  { name: "Rizz", img: "Rizz.webp", genre: "flirting" },
-  { name: "Sigma Male", img: "SigmaMale.webp", genre: "masculinity" },
-  { name: "Ohio Memes", img: "OhioMemes.webp", genre: "location" },
+  { name: "This Is Fine", img: "ThisIsFine.jpg", genre: "acceptance" },
+  { name: "Let Him Cook", img: "LetHimCook.jpg", genre: "cooking" },
+  { name: "Rizz", img: "Rizz.png", genre: "flirting" },
+  { name: "Sigma Male", img: "SigmaMale.jpg", genre: "masculinity" },
   {
     name: "Wojak (Doomer, Soyjak, etc.)",
-    img: "Wojak.webp",
+    img: "Wojak.jpg",
     genre: "character",
   },
 ];
@@ -56,7 +55,7 @@ function generateMeme(memes) {
     container.insertAdjacentHTML(
       "afterbegin",
       `<div class="memeimage">
-      <img src="${memeimage.img}" alt="${memeimage.alt}">
+      <img class = "img"src="${memeimage.img}" alt="${memeimage.alt}">
     </div>`
     );
   });

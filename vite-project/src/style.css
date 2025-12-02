@@ -32,3 +32,14 @@
   --bg: #1c1c1c;
   --text: #f0f0f0;
 }
+
+.img {
+  --meme-size: 140px;
+  width: 12%;
+  height: var(--meme-size);
+  display: block;
+  object-fit: cover;
+  text-align: center;
+  background-color: #ffffff;
+  margin: auto;
+}
