@@ -59,26 +59,18 @@ const memes = [
   { name: "Sigma Male", img: "SigmaMale.jpg", genre: "persona" },
 ];
 
-generateMeme(memes);
-const container = document.querySelector(".container");
-
-function renderMemes(list) {
-  container.innerHTML = "";
-  list.forEach((memeimage) => {
+function generateMeme(memes) {
+  memes.forEach((memeimage) => {
+    const container = document.querySelector(".container");
     container.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="memeimage">
-        <img class="img" src="${memeimage.img}" alt="${memeimage.name}">
-        <p>${memeimage.name}</p>
-      </div>
-    `
+      "afterbegin",
+      `<div class="memeimage">
+      <img class = "img"src="${memeimage.img}" alt="${memeimage.alt}">
+    </div>`
     );
   });
 }
-
-// initial render
-renderMemes(memes);
+generateMeme(memes);
 
 const filterTypes = [
   "persona",
@@ -91,35 +83,44 @@ const filterTypes = [
   "wholesome",
   "absurd",
 ];
-const filterContainer = document.querySelector(".filter");
+const filter = document.querySelector(".filter");
 
-// add an "all" button first
-filterContainer.insertAdjacentHTML(
+filter.insertAdjacentHTML(
   "beforeend",
-  `<button class="filter-btn" data-filter="all">all</button>`
+  `<button class="filter-btn" data-type="all">all</button>`
 );
-
 filterTypes.forEach((genre) => {
-  filterContainer.insertAdjacentHTML(
+  filter.insertAdjacentHTML(
     "beforeend",
-    `<button class="filter-btn" data-filter="${genre}">${genre}</button>`
+    `<button class="filter-btn" data-type="${genre}">${genre}</button>`
   );
 });
 
 function filterItems(type) {
-  if (type === "all") {
-    renderMemes(memes);
+  const container = document.querySelector(".container");
+  container.innerHTML = "";
+  if (!type || type === "all") {
+    generateMeme(memes);
     return;
   }
-  const filtered = memes.filter((m) => m.genre === type);
-  renderMemes(filtered);
+  const filteredMemes = memes.filter((meme) => meme.genre === type);
+  generateMeme(filteredMemes);
 }
 
-// attach handlers
-const filterButtons = filterContainer.querySelectorAll(".filter-btn");
-filterButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const t = btn.getAttribute("data-filter");
-    filterItems(t);
+const filterButtons = document.querySelectorAll(".filter-btn");
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const filterType = button.getAttribute("data-type");
+    filterItems(filterType);
   });
+});
+
+document.querySelector(".btn").addEventListener("click", function () {
+  if (document.body.classList.contains("cool")) {
+    document.body.classList.add("warm");
+    document.body.classList.remove("cool");
+  } else {
+    document.body.classList.add("cool");
+    document.body.classList.remove("warm");
+  }
 });
