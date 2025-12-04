@@ -59,18 +59,26 @@ const memes = [
   { name: "Sigma Male", img: "SigmaMale.jpg", genre: "persona" },
 ];
 
-function generateMeme(memes) {
-  memes.forEach((memeimage) => {
-    const container = document.querySelector(".container");
+generateMeme(memes);
+const container = document.querySelector(".container");
+
+function renderMemes(list) {
+  container.innerHTML = "";
+  list.forEach((memeimage) => {
     container.insertAdjacentHTML(
-      "afterbegin",
-      `<div class="memeimage">
-      <img class = "img"src="${memeimage.img}" alt="${memeimage.alt}">
-    </div>`
+      "beforeend",
+      `
+      <div class="memeimage">
+        <img class="img" src="${memeimage.img}" alt="${memeimage.name}">
+        <p>${memeimage.name}</p>
+      </div>
+    `
     );
   });
 }
-generateMeme(memes);
+
+// initial render
+renderMemes(memes);
 
 const filterTypes = [
   "persona",
@@ -83,29 +91,35 @@ const filterTypes = [
   "wholesome",
   "absurd",
 ];
-const filter = document.querySelector(".filter");
+const filterContainer = document.querySelector(".filter");
+
+// add an "all" button first
+filterContainer.insertAdjacentHTML(
+  "beforeend",
+  `<button class="filter-btn" data-filter="all">all</button>`
+);
 
 filterTypes.forEach((genre) => {
-  filter.insertAdjacentHTML(
+  filterContainer.insertAdjacentHTML(
     "beforeend",
-    `<button class="filter-btn" data-type="${genre}">${genre}</button>`
+    `<button class="filter-btn" data-filter="${genre}">${genre}</button>`
   );
 });
 
 function filterItems(type) {
-  const container = document.querySelector(".container");
-  container.innerHTML = "";
-  let filtered = memes;
-  if (type !== "all") filtered = memes.filter((item) => item.genre === type);
-  const filteredMemes = memes.filter((meme) => meme.genre === type);
-  filtered.forEach((item) => inject(item));
-  generateMeme(filteredMemes);
+  if (type === "all") {
+    renderMemes(memes);
+    return;
+  }
+  const filtered = memes.filter((m) => m.genre === type);
+  renderMemes(filtered);
 }
 
-const filterButtons = document.querySelectorAll(".filter-button");
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filterType = button.getAttribute("data-filter");
-    filterItems(filterType);
+// attach handlers
+const filterButtons = filterContainer.querySelectorAll(".filter-btn");
+filterButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const t = btn.getAttribute("data-filter");
+    filterItems(t);
   });
 });
