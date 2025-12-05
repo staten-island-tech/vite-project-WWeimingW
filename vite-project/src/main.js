@@ -65,7 +65,7 @@ function generateMeme(memes) {
     container.insertAdjacentHTML(
       "afterbegin",
       `<div class="memeimage">
-      <img class = "img"src="${memeimage.img}" alt="${memeimage.alt}">
+      <img class="img" src="/${memeimage.img}" alt="${memeimage.name}">
     </div>`
     );
   });

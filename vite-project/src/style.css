@@ -1,38 +1,39 @@
 :root {
-  --blue-light: #4a90e2;
-  --sint-light: #50e3c2;
-  --gold-light: #f5a623;
+  --light-blue: #2998ff;
+  --dark-blue: #135cc5;
+  --light-red: #f87171;
+  --dark-red: #dc2626;
 
-  --blue-dark: #357abd;
-  --sint-dark: #3ac2a0;
-  --gold-dark: #d48806;
-
-  --primary-color: var(--blue-light);
-  --secondary-color: var(--sint-light);
-  --tertiary-color: var(--gold-light);
+  /* Intentions */
+  --primary: var(--light-blue);
+  --secondary: var(--dark-blue);
+  --tertiary: var(--gold-light);
 
   --bg: #ffffff;
-  --text: #1c1c1c;
+  --text: #000000;
 }
 
-.light {
-  --primary-color: var(--blue-light);
-  --secondary-color: var(--sint-light);
-  --tertiary-color: var(--gold-light);
-
-  --bg: #ffffff;
-  --text: #1c1c1c;
+.cool {
+  --primary: var(--light-blue);
+  --secondary: var(--dark-blue);
 }
 
-.dark {
-  --primary-color: var(--blue-dark);
-  --secondary-color: var(--sint-dark);
-  --tertiary-color: var(--gold-dark);
-
-  --bg: #1c1c1c;
-  --text: #f0f0f0;
+.warm {
+  --primary: var(--light-red);
+  --secondary: var(--dark-red);
 }
 
+.hero {
+  background-color: var(--primary);
+}
+
+.main {
+  background-color: var(--secondary);
+  height: 90vh;
+}
+.container {
+  background-color: var(--secondary);
+}
 .img {
   --meme-size: 140px;
   width: 12%;
@@ -40,6 +41,7 @@
   display: block;
   object-fit: cover;
   text-align: center;
-  background-color: #ffffff;
+  background-color: transparent;
+  position: relative;
   margin: auto;
 }
