@@ -5,18 +5,36 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vite-project</title>
+  <title>Meme Generator</title>
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
 
 <body class="cool">
-  <h1 class="hero">CSS Custom Properties</h1>
+  <div class="controls" style="padding: 20px;">
+    <h2>Create Your Own Meme</h2>
+    <label>Upload Image:</label>
+    <input class="file" id="uploadInput" accept="image/*" />
+
+    <label>Image URL:</label>
+    <input class="text" id="urlInput" placeholder="https://example.com/image.jpg" />
+    <button id="addUrlBtn">Add URL Image</button>
+
+    <label>Top Text:</label>
+    <input class="text" id="topTextInput" />
+
+    <label>Bottom Text:</label>
+    <input class="text" id="bottomTextInput" />
+
+    <button id="createMemeBtn">Create Meme</button>
+    <button id="downloadBtn">Download Meme</button>
+  </div>
+
   <div class="container"></div>
   <div class="main">
     <button class="btn">Click Me</button>
   </div>
   <div class="filter"></div>
-</body>
-<script type="module" src="/src/main.js"></script>
+  <script class="module" src="/src/main.js"></script>
 </body>
 
 </html>

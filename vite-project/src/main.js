@@ -1,7 +1,6 @@
 import "./style.css";
 
 const memes = [
-  // Reaction
   {
     name: "Drake Hotline Bling",
     img: "DrakeHotlineBling.jpg",
@@ -13,7 +12,6 @@ const memes = [
     genre: "reaction",
   },
 
-  // Conflict / Drama
   {
     name: "Distracted Boyfriend",
     img: "DistractedBoyfriend.webp",
@@ -25,19 +23,15 @@ const memes = [
     genre: "conflict",
   },
 
-  // Wholesome / Positive
   { name: "Doge", img: "Doge.jpg", genre: "wholesome" },
   { name: "Grumpy Cat", img: "GrumpyCat.jpg", genre: "wholesome" },
 
-  // Achievement / Success
   { name: "Success Kid", img: "SuccessKid.jpg", genre: "achievement" },
 
-  // Humor / Absurd
   { name: "Trollface", img: "Trollface.png", genre: "humor" },
   { name: "Skibidi Toilet", img: "SkibidiToilet.jpg", genre: "absurd" },
   { name: "Fanum Tax", img: "FanumTax.png", genre: "humor" },
 
-  // Decision / Thinking
   { name: "Two Buttons", img: "TwoButtons.webp", genre: "decision" },
   { name: "Expanding Brain", img: "ExpandingBrain.jpg", genre: "thinking" },
   {
@@ -47,7 +41,6 @@ const memes = [
   },
   { name: "This Is Fine", img: "ThisIsFine.jpg", genre: "acceptance" },
 
-  // Character / Persona
   { name: "NPC Meme", img: "NPCMeme.png", genre: "character" },
   {
     name: "Wojak (Doomer, Soyjak, etc.)",
@@ -63,7 +56,7 @@ function generateMeme(memes) {
   memes.forEach((memeimage) => {
     const container = document.querySelector(".container");
     container.insertAdjacentHTML(
-      "afterbegin",
+      "beforeend",
       `<div class="memeimage">
       <img class="img" src="/${memeimage.img}" alt="${memeimage.name}">
     </div>`
@@ -123,4 +116,17 @@ document.querySelector(".btn").addEventListener("click", function () {
     document.body.classList.add("cool");
     document.body.classList.remove("warm");
   }
+});
+
+document.getElementById("uploadInput").addEventListener("change", function () {
+  const file = this.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => createCustomMeme(e.target.result);
+  reader.readAsDataURL(file);
+});
+
+document.getElementById("addUrlBtn").addEventListener("click", () => {
+  const url = document.getElementById("urlInput").value.trim();
+  if (url) createCustomMeme(url);
 });
