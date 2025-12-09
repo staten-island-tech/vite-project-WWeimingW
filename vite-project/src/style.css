@@ -1,64 +1,137 @@
 :root {
-  --light-blue: #ffffff;
-  --dark-blue: #ffffff;
-  --light-red: #000000;
-  --dark-red: #000000;
-
-  /* Intentions */
-  --primary: var(--light-blue);
-  --secondary: var(--dark-blue);
-  --tertiary: var(--gold-light);
-
-  --bg: #ffffff;
-  --text: #000000;
-}
-
-.cool {
-  --primary: var(--light-blue);
-  --secondary: var(--dark-blue);
-}
-
-.warm {
-  --primary: var(--light-red);
-  --secondary: var(--dark-red);
-}
-
-.hero {
-  background-color: var(--primary);
-}
-
-.main {
-  background-color: var(--secondary);
-  box-sizing: border-box;
-  padding: 24px;
-  display: block;
-}
-.container {
-  background-color: var(--secondary);
-}
-.img {
-  --meme-size: 140px;
-  width: 12%;
-  height: var(--meme-size);
-  display: block;
-  object-fit: cover;
-  text-align: center;
-  background-color: transparent;
-  position: relative;
-  margin: auto;
+  --light-bg: #ffffff;
+  --light-text: #000000;
+  --dark-bg: #1b1b1b;
+  --dark-text: #ffffff;
+  --accent-color: #f39c12;
 }
 
 body {
-  background-color: var(--primary);
-  color: var(--text);
-  min-height: 100vh;
+  background-color: var(--light-bg);
+  color: var(--light-text);
+  font-family: Arial, sans-serif;
   margin: 0;
+  padding: 0;
 }
 
-.positioned-text {
-  position: absolute;
+.cool {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+.warm {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+.controls {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.controls input {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.controls button {
+  padding: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+#memeArea {
+  position: relative;
+  width: 350px;
+  margin: 20px auto;
+  border: 2px solid var(--accent-color);
+  padding: 10px;
+  background-color: #333;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.container .img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s, border 0.2s;
+}
+
+.container .img:hover {
+  transform: scale(1.1);
+  border: 2px solid var(--accent-color);
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.filter-btn {
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: var(--accent-color);
   color: white;
-  font-size: 24px;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px black;
+  border: none;
+  border-radius: 4px;
+}
+
+.main {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.main .btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.main {
+  position: relative;
+  text-align: center;
+  margin: 20px auto;
+  width: 50%;
+}
+
+.selected-meme {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+.top-text {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-text {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 }

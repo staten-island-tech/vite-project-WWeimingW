@@ -11,30 +11,36 @@
 
 <body class="cool">
   <div class="controls" style="padding: 20px;">
+    <div id="memeArea">
+      <img id="bigMeme" src="" />
+      <p id="topMemeText"></p>
+      <p id="bottomMemeText"></p>
+    </div>
     <h2>Create Your Own Meme</h2>
     <label>Upload Image:</label>
-    <input class="file" id="uploadInput" accept="image/*" />
+    <input type="file" id="uploadInput" accept="image/*" />
 
     <label>Image URL:</label>
-    <input class="text" id="urlInput" placeholder="https://example.com/image.jpg" />
+    <input type="text" id="urlInput" placeholder="https://example.com/image.jpg" />
     <button id="addUrlBtn">Add URL Image</button>
 
     <label>Top Text:</label>
-    <input class="text" id="topTextInput" />
+    <input type="text" id="topTextInput" />
 
     <label>Bottom Text:</label>
-    <input class="text" id="bottomTextInput" />
+    <input type="text" id="bottomTextInput" />
 
     <button id="createMemeBtn">Create Meme</button>
-    <button id="downloadBtn">Download Meme</button>
   </div>
-
-  <div class="container"></div>
   <div class="main">
-    <button class="btn">Click Me</button>
+    <img id="selectedMemeImage" src="" alt="Your Meme" class="selected-meme">
+    <div id="topMemeText" class="positioned-text top-text"></div>
+    <div id="bottomMemeText" class="positioned-text bottom-text"></div>
+    <button class="btn">Toggle Light/Dark Mode</button>
   </div>
+  <div class="container"></div>
   <div class="filter"></div>
-  <script class="module" src="/src/main.js"></script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
