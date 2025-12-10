@@ -46,27 +46,31 @@ const memes = [
   { name: "Sigma Male", img: "SigmaMale.jpg", genre: "persona" },
 ];
 
-const memeContainer = document.querySelector(".container");
-const filterContainer = document.querySelector(".filter");
-const selectedMemeImage = document.getElementById("selectedMemeImage");
-const topMemeText = document.getElementById("topMemeText");
-const bottomMemeText = document.getElementById("bottomMemeText");
-const topTextInput = document.getElementById("topTextInput");
-const bottomTextInput = document.getElementById("bottomTextInput");
-const uploadInput = document.getElementById("uploadInput");
-const urlInput = document.getElementById("urlInput");
-const addUrlButton = document.getElementById("addUrlBtn");
-const toggleModeButton = document.querySelector(".btn");
+const elements = {
+  memeContainer: document.querySelector(".container"),
+  filterContainer: document.querySelector(".filter"),
+  selectedImg: document.getElementById("selectedMemeImage"),
+  topText: document.getElementById("topMemeText"),
+  bottomText: document.getElementById("bottomMemeText"),
+  topInput: document.getElementById("topTextInput"),
+  bottomInput: document.getElementById("bottomTextInput"),
+  uploadInput: document.getElementById("uploadInput"),
+  urlInput: document.getElementById("urlInput"),
+  addUrlBtn: document.getElementById("addUrlBtn"),
+  toggleBtn: document.querySelector(".btn"),
+};
 
-function generateMemeGallery(memes) {
-  memeContainer.innerHTML = "";
-  memes.forEach(function (meme) {
-    const memeHTML = `<img class="img" src="/${meme.img}" alt="${meme.name}">`;
-    memeContainer.insertAdjacentHTML("beforeend", memeHTML);
+function showMemes(list) {
+  elements.memeContainer.innerHTML = "";
+  list.forEach(function (meme) {
+    const imgTag = `<img class="img" src="/${meme.img}" alt="${meme.name}">`;
+    elements.memeContainer.insertAdjacentHTML("beforeend", imgTag);
   });
 }
-generateMemeGallery(memes);
 
+showMemes(memes);
+
+// --- FILTER BUTTONS ---
 const genres = [
   "all",
   "reaction",
@@ -75,59 +79,61 @@ const genres = [
   "achievement",
   "humor",
 ];
-genres.forEach(function (genre) {
-  const buttonHTML = `<button class="filter-btn" data-genre="${genre}">${genre}</button>`;
-  filterContainer.insertAdjacentHTML("beforeend", buttonHTML);
+
+genres.forEach(function (g) {
+  const btn = `<button class="filter-btn" data-genre="${g}">${g}</button>`;
+  elements.filterContainer.insertAdjacentHTML("beforeend", btn);
 });
 
-const filterButtons = document.querySelectorAll(".filter-btn");
-filterButtons.forEach(function (button) {
+document.querySelectorAll(".filter-btn").forEach(function (button) {
   button.addEventListener("click", function () {
-    const selectedGenre = button.getAttribute("data-genre");
-    if (selectedGenre === "all") {
-      generateMemeGallery(memes);
+    const type = button.getAttribute("data-genre");
+
+    if (type === "all") {
+      showMemes(memes);
     } else {
-      const filteredMemes = memes.filter(function (meme) {
-        return meme.genre === selectedGenre;
+      const result = memes.filter(function (m) {
+        return m.genre === type;
       });
-      generateMemeGallery(filteredMemes);
+      showMemes(result);
     }
   });
 });
 
-memeContainer.addEventListener("click", function (e) {
+elements.memeContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("img")) {
-    selectedMemeImage.src = e.target.src;
+    elements.selectedImg.src = e.target.src;
   }
 });
 
-uploadInput.addEventListener("change", function () {
-  const file = uploadInput.files[0];
+elements.uploadInput.addEventListener("change", function () {
+  const file = elements.uploadInput.files[0];
   const reader = new FileReader();
   reader.onload = function () {
-    selectedMemeImage.src = reader.result;
+    elements.selectedImg.src = reader.result;
   };
   if (file) reader.readAsDataURL(file);
 });
 
-addUrlButton.addEventListener("click", function () {
-  const imageUrl = urlInput.value;
-  if (imageUrl) selectedMemeImage.src = imageUrl;
+elements.addUrlBtn.addEventListener("click", function () {
+  if (elements.urlInput.value !== "") {
+    elements.selectedImg.src = elements.urlInput.value;
+  }
 });
 
-topTextInput.addEventListener("input", function () {
-  topMemeText.textContent = topTextInput.value;
+elements.topInput.addEventListener("input", function () {
+  elements.topText.textContent = elements.topInput.value;
 });
-bottomTextInput.addEventListener("input", function () {
-  bottomMemeText.textContent = bottomTextInput.value;
+elements.bottomInput.addEventListener("input", function () {
+  elements.bottomText.textContent = elements.bottomInput.value;
 });
 
-toggleModeButton.addEventListener("click", function () {
+elements.toggleBtn.addEventListener("click", function () {
   if (document.body.classList.contains("cool")) {
-    document.body.classList.add("warm");
     document.body.classList.remove("cool");
+    document.body.classList.add("warm");
   } else {
-    document.body.classList.add("cool");
     document.body.classList.remove("warm");
+    document.body.classList.add("cool");
   }
 });
