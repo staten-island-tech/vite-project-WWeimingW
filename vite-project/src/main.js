@@ -46,31 +46,31 @@ const memes = [
   { name: "Sigma Male", img: "SigmaMale.jpg", genre: "persona" },
 ];
 
-const elements = {
-  memeContainer: document.querySelector(".container"),
-  filterContainer: document.querySelector(".filter"),
-  selectedImg: document.getElementById("selectedMemeImage"),
-  topText: document.getElementById("topMemeText"),
-  bottomText: document.getElementById("bottomMemeText"),
-  topInput: document.getElementById("topTextInput"),
-  bottomInput: document.getElementById("bottomTextInput"),
-  uploadInput: document.getElementById("uploadInput"),
-  urlInput: document.getElementById("urlInput"),
-  addUrlBtn: document.getElementById("addUrlBtn"),
-  toggleBtn: document.querySelector(".btn"),
-};
+const memeContainer = document.querySelector(".container");
+const filterContainer = document.querySelector(".filter");
+const selectedImg = document.getElementById("selectedMemeImage");
+const topText = document.getElementById("topMemeText");
+const bottomText = document.getElementById("bottomMemeText");
+const topInput = document.getElementById("topTextInput");
+const bottomInput = document.getElementById("bottomTextInput");
+const urlInput = document.getElementById("urlInput");
+const addUrlBtn = document.getElementById("addUrlBtn");
+const toggleBtn = document.querySelector(".btn");
 
 function showMemes(list) {
-  elements.memeContainer.innerHTML = "";
+  memeContainer.innerHTML = "";
   list.forEach(function (meme) {
-    const imgTag = `<img class="img" src="/${meme.img}" alt="${meme.name}">`;
-    elements.memeContainer.insertAdjacentHTML("beforeend", imgTag);
+    const img = document.createElement("img");
+    img.src = "/" + meme.img;
+    img.className = "img";
+    img.addEventListener("click", function () {
+      selectedImg.src = img.src;
+    });
+    memeContainer.appendChild(img);
   });
 }
-
 showMemes(memes);
 
-// --- FILTER BUTTONS ---
 const genres = [
   "all",
   "reaction",
@@ -80,55 +80,38 @@ const genres = [
   "humor",
 ];
 
-genres.forEach(function (g) {
-  const btn = `<button class="filter-btn" data-genre="${g}">${g}</button>`;
-  elements.filterContainer.insertAdjacentHTML("beforeend", btn);
-});
-
-document.querySelectorAll(".filter-btn").forEach(function (button) {
+genres.forEach(function (genre) {
+  const button = document.createElement("button");
+  button.className = "filter-btn";
+  button.textContent = genre;
   button.addEventListener("click", function () {
-    const type = button.getAttribute("data-genre");
-
-    if (type === "all") {
+    if (genre === "all") {
       showMemes(memes);
     } else {
-      const result = memes.filter(function (m) {
-        return m.genre === type;
+      const filteredMemes = memes.filter(function (meme) {
+        return meme.genre === genre;
       });
-      showMemes(result);
+      showMemes(filteredMemes);
     }
   });
+  filterContainer.appendChild(button);
 });
 
-elements.memeContainer.addEventListener("click", function (e) {
-  if (e.target.classList.contains("img")) {
-    elements.selectedImg.src = e.target.src;
+topInput.addEventListener("input", function () {
+  topText.textContent = topInput.value;
+});
+
+bottomInput.addEventListener("input", function () {
+  bottomText.textContent = bottomInput.value;
+});
+
+addUrlBtn.addEventListener("click", function () {
+  if (urlInput.value !== "") {
+    selectedImg.src = urlInput.value;
   }
 });
 
-elements.uploadInput.addEventListener("change", function () {
-  const file = elements.uploadInput.files[0];
-  const reader = new FileReader();
-  reader.onload = function () {
-    elements.selectedImg.src = reader.result;
-  };
-  if (file) reader.readAsDataURL(file);
-});
-
-elements.addUrlBtn.addEventListener("click", function () {
-  if (elements.urlInput.value !== "") {
-    elements.selectedImg.src = elements.urlInput.value;
-  }
-});
-
-elements.topInput.addEventListener("input", function () {
-  elements.topText.textContent = elements.topInput.value;
-});
-elements.bottomInput.addEventListener("input", function () {
-  elements.bottomText.textContent = elements.bottomInput.value;
-});
-
-elements.toggleBtn.addEventListener("click", function () {
+toggleBtn.addEventListener("click", function () {
   if (document.body.classList.contains("cool")) {
     document.body.classList.remove("cool");
     document.body.classList.add("warm");
